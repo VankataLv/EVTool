@@ -1,34 +1,32 @@
 {% extends 'common/base.html' %}
 
-{% load static %}
-{% block content %}
-
-
-    <!-- Start Login Section-->
-    <div class="login-register-div">
-        <div class="login-register-box">
-            <h1>Petstagram</h1>
-
-            <!-- Start Login Form-->
+{% block main_content %}
+    
+        <div class="login-box">
+            <h2>Log in with your credentials</h2>
+            <div class="login-form">
             <form method="post">
                 
                 {% csrf_token %}
                 {{ form.errors }}
-                {{ form.username|placeholder:'Email' }}
-                {{ form.password|placeholder:'Password' }}
+                <p>
+                    Username:{{ form.username }}
+                </p>
+                <p>
+                    Password:{{ form.password }}
+                </p>
 
-                <!-- Login Button-->
-                <button type="submit">Log in</button>
+
+                <button type="submit"><i class="fas fa-user"></i> Sign in</button>
             </form>
-            <!-- End Login Form -->
+
 
         </div>
+    
         <div class="second-option">
-
-            <!-- Link to Register Page-->
-            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            <p>Don't have an account? 
+                <a href="{% url 'register' %}">
+                    <button type="button"><i class="fas fa-user-plus"></i> Register</button>
+                </a></p>
         </div>
-    </div>
-    <!-- End Login Section-->
-
 {% endblock %}

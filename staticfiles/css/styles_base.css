@@ -2,7 +2,9 @@
 @import url(footer.css);
 @import url(reset.css);
 @import url(typography.css);
-@import url(register-page.css);
+@import url(register-login-page.css);
+@import url(profile-details.css);
+@import url(profile-edit-delete-page.css);
 
 body {
     max-width: 1920px;

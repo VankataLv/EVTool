@@ -2,15 +2,40 @@
 {% load static %}
 
 {% block main_content %}
-    <h2>Welcome to your profile details {{ user.username }}</h2>
+    <div class="profile-details-box">
+        {% if object.profile.profile_picture %}
+            <img src="{{ object.profile.profile_picture }}" alt="{% static 'images/stock_user.png' %}" />
+        {% else %}
+            <img src="{% static 'images/stock_user.png' %}" alt="profile icon" />
+        {% endif %}
+    <h2>Welcome to   
+        {% if user.profile.get_full_name %}
+            {{ user.profile.get_full_name}}
+        {% elif user.profile.nickname %}
+            {{ user.nickname }}
+        {% else %}
+            {{ user.username }}
+        {% endif %}
+        profile details
+    </h2>
+    
+    <div class="profile-attributes">
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Nickname: {{ user.profile.nickname }}</p>
+        <p>First Name: {{ user.profile.first_name }}</p>
+        <p>Last Name: {{ user.profile.last_name }}</p>
+        <p>Phone number: {{ user.profile.phone_number }}</p>
+    </div>    
+    
     <div class="edit-delete-btns">
-
-        <a href="{% url 'profile-edit' request.user.pk%}">
-            <button type="button"><i class="fas fa-pencil"></i> Edit your profile</button>
-        </a>
-        <a href="{% url 'profile-delete' request.user.pk%}"> 
-            <button type="button"><i class="fas fa-ban"></i> Delete your profile</button>
-        </a>
-
+        {% if request.user.pk == object.pk %}
+            <a href="{% url 'profile-edit' request.user.pk %}">
+                <button type="button"><i class="fas fa-pencil"></i> Edit your profile</button>
+            </a>
+            <a href="{% url 'profile-delete' request.user.pk %}"> 
+                <button type="button"><i class="fas fa-ban"></i> Delete your profile</button>
+            </a>
+        {% endif %}
     </div>
 {% endblock %}

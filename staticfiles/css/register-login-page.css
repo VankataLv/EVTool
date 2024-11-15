@@ -1,5 +1,4 @@
-
-.register-box {
+.register-box , .login-box{
     width: 100%;
     max-width: 400px;
     margin: 10px auto;
@@ -11,23 +10,23 @@
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: #333;
-    margin-bottom: 10px; /
+    margin-bottom: 10px;
 }
 
-.register-form form {
+.register-form form, .login-form form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.register-form p {
+.register-form p, .login-form p {
     margin: 0;
     padding: 0;
 }
 
-.register-form input {
+.register-form input, .login-form input {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
@@ -37,10 +36,14 @@ h2 {
     background-color: #f0f8ff;
 }
 
-.register-form input:focus {
+.register-form input:focus, .login-form input:focus {
     border-color: #3c78a4;
     outline: none;
     background-color: #e0f2ff;
+}
+
+.second-option{
+    border-top: 1px solid #333;
 }
 
 button {
@@ -70,4 +73,14 @@ button:hover {
 
 .second-option a:hover {
     color: #3c78a4;
+}
+
+@media (max-width: 768px) {
+    .edit-delete-btns {
+        flex-direction: column;
+    }
+
+    .edit-delete-btns a button {
+        width: 100%;
+    }
 }

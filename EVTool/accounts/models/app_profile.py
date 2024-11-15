@@ -7,6 +7,8 @@ UserModel = get_user_model()
 
 
 class Profile(models.Model):
+    MAX_LENGTH_NAMES = 50
+
     user = models.OneToOneField(
         to=UserModel,
         on_delete=models.CASCADE,
@@ -15,19 +17,19 @@ class Profile(models.Model):
 
     nickname = models.CharField(
         unique=True,
-        max_length=50,
+        max_length=MAX_LENGTH_NAMES,
         validators=[nickname_validator, ]
     )
 
     first_name = models.CharField(
-        max_length=50,
+        max_length=MAX_LENGTH_NAMES,
         blank=True,
         null=True,
         validators=[name_validator,]
     )
 
     last_name = models.CharField(
-        max_length=50,
+        max_length=MAX_LENGTH_NAMES,
         blank=True,
         null=True,
         validators=[name_validator,]

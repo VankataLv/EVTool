@@ -1,0 +1,79 @@
+.profile-details-box {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.profile-details-box img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #4f90c4;
+    margin-bottom: 15px;
+}
+
+.profile-details-box h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin: 10px 0;
+}
+
+.profile-attributes {
+    text-align: left;
+    margin-top: 15px;
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+}
+
+.profile-attributes p {
+    margin: 5px 0;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.edit-delete-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.edit-delete-btns a button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #4f90c4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-delete-btns a button:hover {
+    background-color: #3c78a4;
+}
+
+.edit-delete-btns a:nth-child(2) button {
+    background-color: #d9534f;
+}
+
+.edit-delete-btns a:nth-child(2) button:hover {
+    background-color: #c12e2a;
+}
+
+@media (max-width: 768px) {
+    .edit-delete-btns {
+        flex-direction: column;
+    }
+
+    .edit-delete-btns a button {
+        width: 100%;
+    }
+}

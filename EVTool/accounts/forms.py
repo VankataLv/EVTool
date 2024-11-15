@@ -1,5 +1,3 @@
-import email
-
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
@@ -22,10 +20,10 @@ class AppUserCreationForm(UserCreationForm):
             'email': 'Email:',
         }
 
+
 class AppUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = UserModel
-        # fields = ('username', 'email',) TODO check do i need this row
 
 
 class ProfileEditForm(forms.ModelForm):

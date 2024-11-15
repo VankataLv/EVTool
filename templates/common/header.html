@@ -13,17 +13,32 @@
             </div>
             
             <div class="nav-auth-buttons">
-                <a href="{% url 'login' %}">
-                    <button type="button"><i class="fas fa-user"></i> Sign in</button>
-                </a>
-                <a href="{% url 'register' %}"> 
-                    <button type="button"><i class="fas fa-user-plus"></i> Register</button>
-                </a>
+            
+                {% if request.user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="button logout-btn" type="submit"><i class="fas fa-circle-xmark"></i> Logout</button>
+                    </form>
+                    
+                    <a href="{% url 'profile-details' request.user.pk %}">
+                        <button type="button"><i class="fas fa-list"></i> View Profile</button>
+        </a>
+                    
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <button type="button"><i class="fas fa-user"></i> Sign in</button>
+                    </a>
+                    <a href="{% url 'register' %}"> 
+                        <button type="button"><i class="fas fa-user-plus"></i> Register</button>
+                    </a>
+                    
+                {% endif %}
+
             </div>    
         </div>
         <div class="nav-bottom-row">    
             <div class="nav-links">
-                <a href="#"><i class="fa-solid fa-house-chimney"></i> Home</a>
+                <a href="{% url 'index' %}"><i class="fa-solid fa-house-chimney"></i> Home</a>
                 <a href="#"><i class="fa-solid fa-car-side"></i> Cars for sale</a>
                 <a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Repair & Maintenance</a>
                 <a href="#"><i class="fa-regular fa-handshake"></i> Services</a>

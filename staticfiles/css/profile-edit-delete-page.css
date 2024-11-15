@@ -1,0 +1,85 @@
+.profile-edit-box {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.profile-edit-box h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-edit-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.profile-edit-box .profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+}
+
+.profile-edit-box label {
+    font-weight: bold;
+    color: #333;
+}
+
+.profile-edit-box input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #4f90c4;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #f0f8ff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-edit-box input:focus {
+    border-color: #3c78a4;
+    background-color: #e0f2ff;
+    outline: none;
+}
+
+.profile-edit-box .error {
+    color: red;
+    font-size: 0.9em;
+    margin: 0 0 5px 0;
+}
+
+.profile-edit-box button.edit-btn {
+    padding: 10px 15px;
+    background-color: #4f90c4;
+    color: white;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-edit-box button.edit-btn:hover {
+    background-color: #3c78a4;
+}
+
+@media (max-width: 768px) {
+    .profile-edit-box {
+        padding: 10px;
+    }
+
+    .profile-edit-box form {
+        gap: 10px;
+    }
+
+    .profile-edit-box button.edit-btn {
+        width: 100%;
+    }
+}
