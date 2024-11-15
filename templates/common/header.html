@@ -1,0 +1,35 @@
+{% load static %}
+    <nav>
+        <div class="nav-top-row">
+            <div class="nav-logo">
+                <a href="{% url 'index' %}">
+                    <img width="50px" src="{% static 'images/EV_Tool_Logo-cropped.jpg' %}"
+                         alt="Logo of EV Tool">
+                </a>
+            </div>
+            
+            <div class="nav-title">
+                <h1>All EV Tools in one spot</h1>
+            </div>
+            
+            <div class="nav-auth-buttons">
+                <a href="{% url 'login' %}">
+                    <button type="button"><i class="fas fa-user"></i> Sign in</button>
+                </a>
+                <a href="{% url 'register' %}"> 
+                    <button type="button"><i class="fas fa-user-plus"></i> Register</button>
+                </a>
+            </div>    
+        </div>
+        <div class="nav-bottom-row">    
+            <div class="nav-links">
+                <a href="#"><i class="fa-solid fa-house-chimney"></i> Home</a>
+                <a href="#"><i class="fa-solid fa-car-side"></i> Cars for sale</a>
+                <a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Repair & Maintenance</a>
+                <a href="#"><i class="fa-regular fa-handshake"></i> Services</a>
+                <a href="#"><i class="fa-solid fa-gears"></i> Parts</a>
+                <a href="https://ev-database.org/"><i class="fa-solid fa-database"></i> Database</a>
+                <a href="https://vsichkotok.bg/"><i class="fa-solid fa-charging-station"></i> Charging</a>
+            </div>
+        </div>
+    </nav>

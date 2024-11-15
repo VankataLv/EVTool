@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/styles_base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/EV_Tool_Logo.jpg' %}">
+    {% block styles %}
+    {% endblock %}
+    <title>EvTool</title>
+</head>
+
+<body>
+    <header>
+        {% include 'common/header.html' %}
+    </header>
+
+    <main>
+        {% block main_content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% include 'common/footer.html' %}
+    </footer>
+
+</body>
+</html>

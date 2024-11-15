@@ -1,0 +1,15 @@
+@import url(header.css);
+@import url(footer.css);
+@import url(reset.css);
+@import url(typography.css);
+@import url(register-page.css);
+
+body {
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../images/EV_Tool_Logo.jpg");
+    background-size: cover;
+    background-position: top;
+}

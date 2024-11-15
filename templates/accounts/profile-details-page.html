@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block main_content %}
+    <h2>Welcome to your profile details {{ user.username }}</h2>
+    <div class="edit-delete-btns">
+
+        <a href="{% url 'profile-edit' request.user.pk%}">
+            <button type="button"><i class="fas fa-pencil"></i> Edit your profile</button>
+        </a>
+        <a href="{% url 'profile-delete' request.user.pk%}"> 
+            <button type="button"><i class="fas fa-ban"></i> Delete your profile</button>
+        </a>
+
+    </div>
+{% endblock %}
