@@ -5,23 +5,23 @@
         <div class="login-box">
             <h2>Log in with your credentials</h2>
             <div class="login-form">
-            <form method="post">
-                
-                {% csrf_token %}
-                {{ form.errors }}
-                <p>
-                    Username:{{ form.username }}
-                </p>
-                <p>
-                    Password:{{ form.password }}
-                </p>
+                <form method="post">
+                    
+                    {% csrf_token %}
+                    {{ form.errors }}
+                    <p>
+                        Username:{{ form.username }}
+                    </p>
+                    <p>
+                        Password:{{ form.password }}
+                    </p>
+    
+    
+                    <button type="submit"><i class="fas fa-user"></i> Sign in</button>
+                </form>
 
-
-                <button type="submit"><i class="fas fa-user"></i> Sign in</button>
-            </form>
-
-
-        </div>
+            
+            </div>
     
         <div class="second-option">
             <p>Don't have an account? 
@@ -29,4 +29,5 @@
                     <button type="button"><i class="fas fa-user-plus"></i> Register</button>
                 </a></p>
         </div>
+    </div>
 {% endblock %}

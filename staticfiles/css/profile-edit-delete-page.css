@@ -15,17 +15,23 @@
     margin-bottom: 10px;
 }
 
+.profile-edit-box h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
 .profile-edit-box form {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 10px;
 }
 
 .profile-edit-box .profile-edit-form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1px;
+    gap: 10px;
 }
 
 .profile-edit-box label {
@@ -55,10 +61,9 @@
     margin: 0 0 5px 0;
 }
 
-.profile-edit-box button.edit-btn {
+.profile-edit-box button {
+    width: 100%;
     padding: 10px 15px;
-    background-color: #4f90c4;
-    color: white;
     font-size: 1.1em;
     border: none;
     border-radius: 5px;
@@ -66,8 +71,28 @@
     transition: background-color 0.3s ease;
 }
 
-.profile-edit-box button.edit-btn:hover {
-    background-color: #3c78a4;
+.profile-edit-box button:hover {
+    opacity: 0.9;
+}
+
+
+.profile-edit-box button.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.profile-edit-box button.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+
+.profile-edit-box button.cancel-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.profile-edit-box button.cancel-btn:hover {
+    background-color: #2980b9;
 }
 
 @media (max-width: 768px) {
@@ -76,10 +101,10 @@
     }
 
     .profile-edit-box form {
-        gap: 10px;
+        gap: 15px;
     }
 
-    .profile-edit-box button.edit-btn {
+    .profile-edit-box button {
         width: 100%;
     }
 }

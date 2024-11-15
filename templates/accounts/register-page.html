@@ -7,6 +7,7 @@
         <div class="register-form">
             <form method="post">
                 {% csrf_token %}
+                {{ form.errors }}
                 <p>
                     Username:{{ form.username }}
                 </p>

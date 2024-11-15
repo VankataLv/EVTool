@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
@@ -34,6 +34,15 @@ class AppUserRegisterView(CreateView):
 class AppUserLoginView(LoginView):
     template_name = 'accounts/login-page.html'
 
+    def form_valid(self, form):
+        user = form.get_user()
+        if not user.is_active:
+
+            messages.error(self.request,
+                           'Your account has been deactivated. '
+                           'If you need assistance, please contact support at 0900-123456.')
+            return redirect(reverse_lazy('index'))
+        return super().form_valid(form)
 
 # ------------------------ Profile Views -----------------------------
 
@@ -85,6 +94,15 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Profile
     template_name = 'accounts/profile-delete-page.html'
     success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        user = self.get_object().user
+        user.is_active = False
+        user.save()
+
+        logout(self.request)
+
+        return super().form_valid(form)
 
     def test_func(self):
         profile = self.get_object()

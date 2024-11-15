@@ -17,12 +17,15 @@ class Profile(models.Model):
 
     nickname = models.CharField(
         unique=True,
+        blank=True,
+        null=True,
         max_length=MAX_LENGTH_NAMES,
         validators=[nickname_validator, ]
     )
 
     first_name = models.CharField(
         max_length=MAX_LENGTH_NAMES,
+        unique=True,
         blank=True,
         null=True,
         validators=[name_validator,]
@@ -30,17 +33,21 @@ class Profile(models.Model):
 
     last_name = models.CharField(
         max_length=MAX_LENGTH_NAMES,
+        unique=True,
         blank=True,
         null=True,
         validators=[name_validator,]
     )
 
     date_of_birth = models.DateField(
+        unique=True,
         blank=True,
         null=True,
     )
     phone_number = models.CharField(
         unique=True,
+        blank=True,
+        null=True,
         max_length=12,
         validators=[phone_number_validator,]
     )
