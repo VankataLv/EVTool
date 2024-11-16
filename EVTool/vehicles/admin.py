@@ -27,8 +27,6 @@ class EvCarAdmin(ModelAdmin):
     first_photo.short_description = 'First Photo'
 
 
-
-
 @admin.register(Municipality)
 class MunicipalityAdmin(ModelAdmin):
     list_display = ('pk', 'municipality_name')
@@ -77,6 +75,7 @@ class EvCarPhotoAdmin(ModelAdmin):
         return '-'
     image_display.short_description = 'Image'
 
+
 # BIKES logic --------------------------------------------------
 @admin.register(EVBike)
 class EVBikeAdmin(admin.ModelAdmin):
@@ -95,12 +94,14 @@ class EVBikeAdmin(admin.ModelAdmin):
 
     first_photo.short_description = 'First Photo'
 
+
 @admin.register(BikeModel)
 class BikeModelAdmin(ModelAdmin):
         list_display = ('pk', 'brand', 'name')
         search_fields = ('name',)
         ordering = ('brand__name', 'name',)
         list_filter = ('brand',)
+
 
 @admin.register(EvBikePhoto)
 class EvBikePhotoAdmin(ModelAdmin):

@@ -1,0 +1,28 @@
+footer {
+    background: linear-gradient(to right, #002705 -10%, #00bfff 90%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    border-top: 2px solid #4f4f4f;
+}
+
+footer .footer-links {
+    margin-bottom: 15px;
+}
+
+footer a {
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    color: white;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-text {
+    margin-top: 10px;
+    font-size: 1em;
+}

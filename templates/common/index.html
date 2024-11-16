@@ -1,8 +1,61 @@
 {% extends 'common/base.html' %}
-{% load static %}
+
 
 {% block main_content %}
-    <h1>
-    This is the main content of the index template
-    </h1>
+    <div class="data-box">
+        <h3>We currently have:</h3>
+        <div class="top-row">
+            <p>{{ cars_count }} cars for sale</p>     
+            <p>{{ bikes_count }} bikes for sale</p>     
+            <p>{{ special_offers_count }} special offers</p>     
+            <p>{{ users_count }} registered users</p>     
+        </div>   
+        <div class="second-option">
+            <p>Register now and get access to those
+                <a href="{% url 'register' %}">
+                    <button type="button"><i class="fas fa-user-plus"></i> Register</button>
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="cards-box">
+        <a href="#" class="card">
+            <i class="fa-solid fa-car-side"></i>
+            <span>Cars for Sale</span>
+        </a>
+        
+        <a href="#" class="card">
+            <i class="fa-solid fa-motorcycle"></i>
+            <span>Bikes for Sale</span>
+        </a>
+        
+        <a href="#" class="card">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <span>Repair & Maintenance</span>
+        </a>
+        
+        <a href="#" class="card">
+            <i class="fa-regular fa-handshake"></i>
+            <span>Services & Insurance</span>
+        </a>
+        
+        <a href="#" class="card">
+            <i class="fa-solid fa-gears"></i>
+            <span>Parts</span>
+        </a>
+        
+        <a href="https://ev-database.org/" class="card">
+            <i class="fa-solid fa-database"></i>
+            <span>Database</span>
+        </a>
+        
+        <a href="https://vsichkotok.bg/" class="card">
+            <i class="fa-solid fa-charging-station"></i>
+            <span>Charging</span>
+        </a>
+    </div>
+{#    {% for photo in all_photos %}#}
+{#        {% include 'common/pet-posts.html' %}#}
+{#    {% endfor %}#}
 {% endblock %}

@@ -5,9 +5,10 @@
 @import url(register-login-page.css);
 @import url(profile-details.css);
 @import url(profile-edit-delete-page.css);
+@import url(index.css);
 
 body {
-    max-width: 1920px;
+    /*max-width: 1920px;*/
     margin: 0 auto;
     display: flex;
     flex-direction: column;
