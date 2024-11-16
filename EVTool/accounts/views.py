@@ -44,8 +44,6 @@ class AppUserLoginView(LoginView):
             return redirect(reverse_lazy('index'))
         return super().form_valid(form)
 
-# ------------------------ Profile Views -----------------------------
-
 
 class ProfileDetailView(DetailView, UserPassesTestMixin):
     model = UserModel
@@ -58,15 +56,19 @@ class ProfileDetailView(DetailView, UserPassesTestMixin):
         return context
 
     def test_func(self):
-        return self.request.user.pk == self.kwargs['pk']
+        is_allowed = self.request.user.is_staff or self.request.user.is_superuser
+        is_own_profile = self.request.user.pk == self.kwargs['pk']
+        return is_allowed or is_own_profile
 
     def get_queryset(self):
-        # Limit the queryset to the logged-in user's profile
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return self.model.objects.all()
         return self.model.objects.filter(pk=self.request.user.pk)
 
     def handle_no_permission(self):
         messages.error(self.request, "You are not allowed to view this profile.")
         return redirect('index')
+
 
 class ProfileEditView(LoginRequiredMixin, UpdateView, UserPassesTestMixin):
     model = Profile
@@ -80,15 +82,19 @@ class ProfileEditView(LoginRequiredMixin, UpdateView, UserPassesTestMixin):
         )
 
     def test_func(self):
-        return self.request.user == self.get_object().user
+        is_allowed = self.request.user.is_staff or self.request.user.is_superuser
+        is_own_profile = self.request.user.pk == self.kwargs['pk']
+        return is_allowed or is_own_profile
 
     def get_queryset(self):
-        # Limit the queryset to the logged-in user's profile
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return self.model.objects.all()
         return self.model.objects.filter(pk=self.request.user.pk)
 
     def handle_no_permission(self):
         messages.error(self.request, "You are not allowed to view this profile.")
         return redirect('index')
+
 
 class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Profile
@@ -105,10 +111,13 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return super().form_valid(form)
 
     def test_func(self):
-        profile = self.get_object()
-        return self.request.user == profile.user
+        is_allowed = self.request.user.is_staff or self.request.user.is_superuser
+        is_own_profile = self.request.user.pk == self.kwargs['pk']
+        return is_allowed or is_own_profile
 
     def get_queryset(self):
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return self.model.objects.all()
         return self.model.objects.filter(pk=self.request.user.pk)
 
     def handle_no_permission(self):
