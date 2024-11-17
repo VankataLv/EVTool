@@ -6,13 +6,13 @@
 @import url(profile-details.css);
 @import url(profile-edit-delete-page.css);
 @import url(index.css);
+@import url(car-dashboard.css);
+@import url(car-details.css);
 
 body {
-    /*max-width: 1920px;*/
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    background-image: url("../images/EV_Tool_Logo.jpg");
+    background-image: url("../images/background.jpg");
     background-size: cover;
-    background-position: top;
 }

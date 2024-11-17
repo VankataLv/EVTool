@@ -8,20 +8,20 @@ from EVTool.vehicles.models.adminclasses.brand import Brand
 
 class EVCar(BaseEV):
     DRIVETRAIN_CHOICES = [
-        ("fwd", "Front-wheel drive"),
-        ("rwd", "Rear-wheel drive"),
-        ("awd", "All-wheel drive"),
+        ("Front-wheel drive", "Front-wheel drive"),
+        ("Rear-wheel drive", "Rear-wheel drive"),
+        ("All-wheel drive", "All-wheel drive"),
     ]
 
     BODY_TYPE_CHOICES = [
-        ("sedan", "Sedan"),
-        ("hatch", "Hatchback"),
-        ("station_wagon", "Station wagon"),
-        ("coupe", "Coupe"),
-        ("suv", "SUV"),
-        ("pickup_truck", "Pickup Truck"),
-        ("minivan", "Minivan"),
-        ("cabriolet", "Cabriolet"),
+        ("Sedan", "Sedan"),
+        ("Hatchback", "Hatchback"),
+        ("Station wagon", "Station wagon"),
+        ("Coupe", "Coupe"),
+        ("SUV", "SUV"),
+        ("Pickup Truck", "Pickup Truck"),
+        ("Minivan", "Minivan"),
+        ("Cabriolet", "Cabriolet"),
     ]
 
     DOORS_CHOICES = [
@@ -45,7 +45,7 @@ class EVCar(BaseEV):
     )
 
     drivetrain = models.CharField(
-        max_length=15,
+        max_length=17,
         choices=DRIVETRAIN_CHOICES,
         default='unknown',
     )

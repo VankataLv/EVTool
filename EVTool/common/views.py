@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from EVTool.vehicles.models import EVCar, EVBike
 from EVTool.accounts.models import AppUser
 
+
 class IndexView(TemplateView):
     template_name = 'common/index.html'
 
@@ -14,3 +15,4 @@ class IndexView(TemplateView):
         context['special_offers_count'] = 3
         context['users_count'] = AppUser.objects.all().count()
         return context
+

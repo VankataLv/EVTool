@@ -1,0 +1,133 @@
+.car-detail {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e0f2ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.car-detail h1 {
+    font-size: 3.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+
+.car-detail-info {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #444;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+.car-detail-info h2{
+    text-align: center;
+}
+
+.car-detail-info p {
+    margin: 10px 0;
+}
+
+.car-detail-info strong {
+    color: #007BFF;
+}
+
+.car-detail-owner-info {
+    margin-top: 10px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+
+.car-detail-owner-info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.owner-info-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.owner-info-content img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.owner-details {
+    flex-basis: 60%;
+    text-align: left;
+    font-size: 1.8rem;
+}
+
+.owner-details p {
+    margin: 5px 0;
+}
+
+.car-detail-photos {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.car-detail-photos h3 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.car-detail-photos img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-detail-photos img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .car-detail {
+        padding: 15px;
+    }
+
+    .car-detail h1 {
+        font-size: 1.8rem;
+    }
+
+    .car-detail-info {
+        font-size: 1rem;
+    }
+
+    .car-detail-owner-info {
+        font-size: 1rem;
+    }
+
+    .owner-info-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .owner-info-content img {
+        margin-bottom: 10px;
+    }
+
+    .owner-details p {
+        margin: 5px 0;
+    }
+
+    .car-detail-photos img {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+}

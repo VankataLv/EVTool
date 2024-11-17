@@ -86,7 +86,6 @@ class EVBikeAdmin(admin.ModelAdmin):
     list_filter = ('brand', 'year', 'color', 'body_type',)
 
     def first_photo(self, obj):
-        # Assuming EVBike has a related `photos` field with a Photo model
         photo = obj.photos.first()
         if photo and photo.image:
             return mark_safe(f'<img src="{photo.image.url}" width="50" height="50" style="object-fit: cover;" />')
