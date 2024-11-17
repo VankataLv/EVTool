@@ -8,6 +8,7 @@
 @import url(index.css);
 @import url(../vehicles/cars/car-dashboard.css);
 @import url(../vehicles/cars/car-details.css);
+@import url(../vehicles/cars/car-edit-delete-create-page.css);
 
 body {
     margin: 0 auto;

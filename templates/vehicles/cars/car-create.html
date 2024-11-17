@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+
+{% block main_content %}
+
+    <div class="car-edit-box">
+        <h2>Add Car</h2>
+
+        <form method="post" action="{% url 'car-add' %}">
+            
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="add-btn" type="submit">Add Car</button>
+        </form>
+
+    </div>
+
+{% endblock %}

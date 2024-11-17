@@ -23,7 +23,7 @@
     border-bottom: 2px solid #ddd;
 }
 
-.car-detail-info h2{
+.car-detail-info h2 {
     text-align: center;
 }
 
@@ -68,6 +68,47 @@
 
 .owner-details p {
     margin: 5px 0;
+}
+
+.owner-actions {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.owner-actions .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.owner-actions .btn-edit {
+    background-color: #007bff;
+}
+
+.owner-actions .btn-edit:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.owner-actions .btn-delete {
+    background-color: #dc3545;
+}
+
+.owner-actions .btn-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.owner-actions .btn i {
+    margin-right: 8px;
 }
 
 .car-detail-photos {

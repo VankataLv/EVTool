@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 
-from EVTool.vehicles.forms import EVCarCreationForm, EVCarChangeForm
+from EVTool.vehicles.forms import EVCarChangeForm, EVCarCreateForm
 from EVTool.vehicles.models import EVCar, Municipality, Color, Brand, CarModel, EvCarPhoto, EvBikePhoto, EVBike, \
     BikeModel
 from django.utils.html import mark_safe
@@ -9,7 +9,7 @@ from django.utils.html import mark_safe
 
 @admin.register(EVCar)
 class EvCarAdmin(ModelAdmin):
-    add_form = EVCarCreationForm
+    add_form = EVCarCreateForm
     form = EVCarChangeForm
 
     list_display = ('pk', 'brand', 'model', 'owner', 'year',  'location', 'color', 'first_photo',)

@@ -30,11 +30,23 @@
                     <img src="{% static 'images/stock_user.png' %}" alt="profile icon" />
                 {% endif %}
                 <div class="owner-details">
-                    <p><strong>Username:</strong> {% if car.owner.nickname %}{{ car.owner.nickname }}{% else %}{{ car.owner.username }}{% endif %}</p>
+                    <p><strong>Username:</strong> {% if car.owner.profile.nickname %}{{ car.owner.profile.nickname }}{% else %}{{ car.owner.username }}{% endif %}</p>
                     <p><strong>Email:</strong> {{ car.owner.email }}</p>
-                    <p><strong>Phone:</strong> {% if car.owner.phone_number %}{{ car.owner.phone_number }}{% else %}No data{% endif %}</p>
+                    <p><strong>Phone:</strong> {% if car.owner.profile.phone_number %}{{ car.owner.profile.phone_number }}{% else %}No data{% endif %}</p>
                 </div>
             </div>
+
+            {% if car.owner == user %}
+                <div class="owner-actions">
+                    <a href="{% url 'car-edit' car.pk %}" class="btn btn-edit">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a href="{% url 'car-delete' car.pk %}" class="btn btn-delete">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                </div>
+            {% endif %}
+        
         </div>
         <div class="car-detail-photos">
             <h3>Car Photos:</h3>

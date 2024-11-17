@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h2>Car edit</h2>
-</body>
-</html>
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block main_content %}
+        <div class="car-edit-box">
+        <h2>Edit Car Details</h2>
+
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+
+                <p class="error"> {{ field.errors }} </p>
+                <div class="label-input">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                <br>
+
+            {% endfor %}
+        
+            <button class="edit-btn" type="submit">Edit Car</button>
+        </form>
+    </div>
+{% endblock %}

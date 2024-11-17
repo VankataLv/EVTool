@@ -1,0 +1,110 @@
+.car-edit-box {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.car-edit-box h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.car-edit-box h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.car-edit-box form {
+    display: flex;
+    flex-direction: column;
+    /*gap: 10px;*/
+}
+
+.car-edit-box .profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.car-edit-box label {
+    font-weight: bold;
+    color: #333;
+}
+
+.car-edit-box input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #4f90c4;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #f0f8ff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.car-edit-box input:focus {
+    border-color: #3c78a4;
+    background-color: #e0f2ff;
+    outline: none;
+}
+
+.car-edit-box .error {
+    color: red;
+    font-size: 0.9em;
+    margin: 0 0 5px 0;
+}
+
+.car-edit-box button {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.car-edit-box button:hover {
+    opacity: 0.9;
+}
+
+
+.car-edit-box button.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.car-edit-box button.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+
+.car-edit-box button.cancel-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.car-edit-box button.cancel-btn:hover {
+    background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .profile-edit-box {
+        padding: 10px;
+    }
+
+    .profile-edit-box form {
+        gap: 15px;
+    }
+
+    .profile-edit-box button {
+        width: 100%;
+    }
+}
