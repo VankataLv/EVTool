@@ -1,22 +1,48 @@
 {% extends 'common/base.html' %}
-
+{% load static %}
 
 {% block main_content %}
     <div class="data-box">
-        <h3>We currently have:</h3>
-        <div class="top-row">
-            <p>{{ cars_count }} cars for sale</p>     
-            <p>{{ bikes_count }} bikes for sale</p>     
-            <p>{{ special_offers_count }} special offers</p>     
-            <p>{{ users_count }} registered users</p>     
-        </div>   
-        <div class="second-option">
-            <p>Register now and get access to those
-                <a href="{% url 'register' %}">
-                    <button type="button"><i class="fas fa-user-plus"></i> Register</button>
+        {% if user.is_authenticated %}
+            {% if user.profile.profile_picture %}
+                <img src="{{ user.profile.profile_picture }}" alt="Profile Picture" class="profile-picture">
+            {% else %}
+                <img src="{% static 'images/stock_user.png' %}" alt="profile icon" />
+            {% endif %}    
+        
+            <h3>Welcome 
+                {% if user.profile.nickname %}
+                    {{ user.profile.nickname }}
+                {% else %}
+                    {{ user.username }}
+                {% endif %}!
+            </h3>
+    
+            <div class="add-btns-actions">
+                <a href="{% url 'car-add' %}" class="btn btn-add">
+                    <i class="fas fa-car-side"></i> Add a car
                 </a>
-            </p>
-        </div>
+                <a href="#" class="btn btn-add">
+{#                <a href="{% url 'bike-add' %}" class="btn btn-add">#}
+                    <i class="fas fa-motorcycle"></i> Add a bike
+                </a>
+            </div>
+        {% else %}
+            <h3>We currently have:</h3>
+            <div class="top-row">
+                <p>{{ cars_count }} cars for sale</p>     
+                <p>{{ bikes_count }} bikes for sale</p>     
+                <p>{{ special_offers_count }} special offers</p>     
+                <p>{{ users_count }} registered users</p>     
+            </div>   
+            <div class="second-option">
+                <p>Register now and sign in to get access to those:
+                    <a href="{% url 'register' %}">
+                        <button type="button"><i class="fas fa-user-plus"></i> Register</button>
+                    </a>
+                </p>
+            </div>
+        {% endif %}
     </div>
 
     <div class="cards-box">
@@ -40,10 +66,10 @@
             <span>Services & Insurance</span>
         </a>
         
-        <a href="#" class="card">
-            <i class="fa-solid fa-gears"></i>
-            <span>Parts</span>
-        </a>
+{#        <a href="#" class="card">#}
+{#            <i class="fa-solid fa-gears"></i>#}
+{#            <span>Parts</span>#}
+{#        </a>#}
         
         <a href="https://ev-database.org/" class="card">
             <i class="fa-solid fa-database"></i>
@@ -55,7 +81,4 @@
             <span>Charging</span>
         </a>
     </div>
-{#    {% for photo in all_photos %}#}
-{#        {% include 'common/pet-posts.html' %}#}
-{#    {% endfor %}#}
 {% endblock %}
