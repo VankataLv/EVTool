@@ -1,0 +1,55 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block main_content %}
+    <div class="car-detail">
+        <h1>{{ bike }}</h1>
+        <div class="car-detail-info">
+            <h2>Bike facts</h2>
+            <p><strong>Location:</strong> {{ bike.location }}</p>
+            <p><strong>Mileage:</strong> {% if bike.mileage %}{{ bike.mileage }} km{% else %}No data{% endif %}</p>
+            <p><strong>Body Type:</strong> {% if bike.body_type != "unknown" %}{{ bike.body_type }}{% else %}No data{% endif %}</p>
+            <p><strong>Price:</strong> {% if bike.asking_price %}{{ bike.asking_price }} EUR{% else %}No data{% endif %}</p>
+            <p><strong>Color:</strong> {% if bike.color %}{{ bike.color }}{% else %}No data{% endif %}</p>
+            <p><strong>Battery:</strong> {% if bike.battery_capacity %}{{ bike.battery_capacity }} kWh{% else %}No data{% endif %}</p>
+            <p><strong>Horsepower:</strong> {% if bike.horsepower %}{{ bike.horsepower }}{% else %}0{% endif %}</p>
+            <p><strong>Range:</strong> {% if bike.range %}{{ bike.range }} km{% else %}No data{% endif %}</p>
+            <p><strong>Year:</strong> {% if bike.year %}{{ bike.year }}{% else %}No data{% endif %}</p>
+            <p><strong>VIN:</strong> {% if bike.vin %}{{ bike.vin }}{% else %}No data{% endif %}</p>
+            <p><strong>Description:</strong> {% if bike.description %}{{ bike.description }}{% else %}No data{% endif %}</p>
+        </div>
+        <div class="car-detail-owner-info">
+            <h2>Owner information</h2>
+            <div class="owner-info-content">
+                {% if bike.owner.profile.profile_picture %}
+                    <img src="{{ bike.owner.profile.profile_picture }}" alt="{% static 'images/stock_user.png' %}" />
+                {% else %}
+                    <img src="{% static 'images/stock_user.png' %}" alt="profile icon" />
+                {% endif %}
+                <div class="owner-details">
+                    <p><strong>Username:</strong> {% if bike.owner.profile.nickname %}{{ bike.owner.profile.nickname }}{% else %}{{ car.owner.username }}{% endif %}</p>
+                    <p><strong>Email:</strong> {{ bike.owner.email }}</p>
+                    <p><strong>Phone:</strong> {% if bike.owner.profile.phone_number %}{{ bike.owner.profile.phone_number }}{% else %}No data{% endif %}</p>
+                </div>
+            </div>
+
+            {% if bike.owner == user %}
+                <div class="owner-actions">
+                    <a href="{% url 'bike-edit' bike.pk %}" class="btn btn-edit">
+                        <i class="fas fa-edit"></i> Edit Bike
+                    </a>
+                    <a href="{% url 'bike-delete' bike.pk %}" class="btn btn-delete">
+                        <i class="fas fa-trash-alt"></i> Delete Bike
+                    </a>
+                </div>
+            {% endif %}
+        
+        </div>
+        <div class="car-detail-photos">
+            <h3>Bike Photos:</h3>
+            {% for photo in bike.photos.all %}
+                <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Bike Photo' }}">
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

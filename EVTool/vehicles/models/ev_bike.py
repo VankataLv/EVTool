@@ -8,11 +8,11 @@ from EVTool.vehicles.models.base_ev import BaseEV
 
 class EVBike(BaseEV):
     BODY_TYPE_CHOICES = [
-        ("atv", "ATV"),
-        ("roadster", "Roadster"),
-        ("cross", "Cross"),
-        ("track", "Track"),
-        ("tricycle", "Тricycle"),
+        ("ATV", "ATV"),
+        ("Roadster", "Roadster"),
+        ("Cross", "Cross"),
+        ("Track", "Track"),
+        ("Тricycle", "Тricycle"),
     ]
 
     brand = models.ForeignKey(Brand, on_delete=models.DO_NOTHING,)
