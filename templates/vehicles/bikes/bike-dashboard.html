@@ -1,0 +1,46 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block main_content %}
+    <div class="bikes-box">
+        {% if all_bikes %}
+            {% for bike in all_bikes %}
+                <div class="bike-card">
+                    <div class="left"> 
+                        {% if bike.photos.exists %}  
+                            <img src="{{ bike.photos.first.image.url }}" alt='First photo of the bike'>
+                        {% else %} 
+                            <img src="{% static 'images/stock_bike_photo.png' %}" 
+                                 alt="Stock Bike Photo">
+                        {% endif %}
+                    </div>
+                    <div class="right">
+                        <div class="right-top">
+                            <h3><i class="fas fa-motorcycle"></i> {{ bike }}</h3>
+                            <h4><i class="fas fa-euro-sign"></i> Price: {{ bike.asking_price }} EUR</h4>
+                        </div>
+                        <div class="right-middle">
+                            <ul>
+                                <li><i class="fas fa-tachometer-alt"></i> Mileage: {{ bike.mileage }} km</li>
+                                <li><i class="fas fa-calendar-alt"></i> Year: {{ bike.year }}</li>
+                                <li><i class="fas fa-battery-full"></i> Battery Capacity: {{ bike.battery_capacity }} kWh</li>
+                                <li><i class="fas fa-horse"></i> Horsepower: {{ bike.horsepower }} hp</li>
+                                <li><i class="fas fa-road"></i> Range: {{ bike.range }} km</li>
+                            </ul>
+                        </div>
+                        <div class="right-bottom">
+                          <a href="{% url 'bike-details' bike.pk %}">
+                                <button type="button"><i class="fas fa-list"></i> See details</button>
+                            </a>    
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        {% else %}
+            <div class="no-bikes">
+                <h2>Sorry there are no bikes for sale ay the moment!</h2>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

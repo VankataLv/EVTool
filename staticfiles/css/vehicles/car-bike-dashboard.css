@@ -1,4 +1,4 @@
-.cars-box {
+.cars-box, .bikes-box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +8,7 @@
     box-sizing: border-box;
 }
 
-.car-card {
+.car-card, .bike-card {
     display: flex;
     flex-direction: row;
     background-color: #fff;
@@ -21,12 +21,12 @@
     box-sizing: border-box;
 }
 
-.car-card:hover {
+.car-card:hover, .bike-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
-.car-card .left {
+.car-card .left, .bike-card .left {
     flex: 1;
     background-color: #eee;
     display: flex;
@@ -35,13 +35,13 @@
     padding: 10px;
 }
 
-.car-card .left img {
+.car-card .left img, .bike-card .left img {
     width: 200px;
     height: auto;
     border-radius: 5px;
 }
 
-.car-card .right {
+.car-card .right, .bike-card .right {
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -50,35 +50,35 @@
     background-color: #e0f2ff;
 }
 
-.car-card .right-top,
-.car-card .right-middle,
-.car-card .right-bottom {
+.car-card .right-top, .bike-card .right-top,
+.car-card .right-middle, .bike-card .right-middle,
+.car-card .right-bottom, .bike-card .right-bottom {
     padding-bottom: 10px;
 }
 
-.car-card .right-top {
+.car-card .right-top, .bike-card .right-top {
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
 }
 
-.car-card .right-middle {
+.car-card .right-middle, .bike-card .right-middle {
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
 }
 
-.car-card .right-top h3 {
+.car-card .right-top h3, .bike-card .right-top h3 {
     font-size: 2.5rem;
     margin: 0;
     color: #333;
 }
 
-.car-card .right-top h4 {
+.car-card .right-top h4, .bike-card .right-top h4 {
     font-size: 2rem;
     margin: 5px 0;
     color: #555;
 }
 
-.car-card .right-middle ul {
+.car-card .right-middle ul, .bike-card .right-middle ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -86,18 +86,11 @@
     color: #555;
 }
 
-.car-card .right-middle ul li {
+.car-card .right-middle ul li, .bike-card .right-middle ul li {
     margin-bottom: 5px;
 }
 
-.car-card .right-bottom {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 15px;
-}
-
-.car-card .right-bottom button {
+.car-card .right-bottom button, .bike-card .right-bottom button {
     background-color: #007BFF;
     color: white;
     border: none;
@@ -108,11 +101,11 @@
     transition: background-color 0.3s ease;
 }
 
-.car-card .right-bottom button:hover {
+.car-card .right-bottom button:hover, .bike-card .right-bottom button:hover {
     background-color: #0056b3;
 }
 
-.no-cars {
+.no-cars, .no-bikes {
     width: 100%;
     text-align: center;
     color: #888;
@@ -121,13 +114,13 @@
 }
 
 @media (max-width: 1024px) {
-    .car-card {
+    .car-card, .bike-card {
         width: 80%;
     }
 }
 
 @media (max-width: 768px) {
-    .car-card {
+    .car-card, .bike-card {
         width: 100%;
     }
 }

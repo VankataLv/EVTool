@@ -6,9 +6,9 @@
 @import url(../accounts/profile-details.css);
 @import url(../accounts/profile-edit-delete-page.css);
 @import url(index.css);
-@import url(../vehicles/cars/car-dashboard.css);
-@import url(../vehicles/cars/car-details.css);
-@import url(../vehicles/cars/car-edit-delete-create-page.css);
+@import url(../vehicles/car-bike-dashboard.css);
+@import url(../vehicles/car-bike-details.css);
+@import url(../vehicles/car-bike-edit-delete-create-page.css);
 
 body {
     margin: 0 auto;

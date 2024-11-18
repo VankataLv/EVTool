@@ -39,10 +39,10 @@
             {% if car.owner == user %}
                 <div class="owner-actions">
                     <a href="{% url 'car-edit' car.pk %}" class="btn btn-edit">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> Edit Car
                     </a>
                     <a href="{% url 'car-delete' car.pk %}" class="btn btn-delete">
-                        <i class="fas fa-trash-alt"></i> Delete
+                        <i class="fas fa-trash-alt"></i> Delete Car
                     </a>
                 </div>
             {% endif %}

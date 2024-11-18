@@ -8,8 +8,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('EVTool.common.urls')),
     path('accounts/', include('EVTool.accounts.urls')),
-    path('vehicles/cars/', include('EVTool.vehicles.urls')),
-    # path('vehicles/bikes/', include('EVTool.vehicles.urls')),
+    path('vehicles/cars/', include('EVTool.vehicles.cars-urls.urls')),
+    path('vehicles/bikes/', include('EVTool.vehicles.bikes-urls.urls')),
 ]
 
 if settings.DEBUG:

@@ -68,14 +68,17 @@
 
 .owner-details p {
     margin: 5px 0;
+
 }
 
 .owner-actions {
     margin-top: 10px;
     margin-bottom: 10px;
+    padding-top: 10px;
     display: flex;
     justify-content: center;
     gap: 10px;
+    border-top: 2px solid #ddd;
 }
 
 .owner-actions .btn {
