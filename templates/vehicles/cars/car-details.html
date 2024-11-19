@@ -38,6 +38,9 @@
 
             {% if car.owner == user %}
                 <div class="owner-actions">
+                    <a href="{% url 'car-photo-add' car.pk %}" class="btn btn-add-photo">
+                        <i class="fas fa-camera"></i> Add photos
+                    </a>
                     <a href="{% url 'car-edit' car.pk %}" class="btn btn-edit">
                         <i class="fas fa-edit"></i> Edit Car
                     </a>
@@ -50,8 +53,10 @@
         </div>
         <div class="car-detail-photos">
             <h3>Car Photos:</h3>
-            {% for photo in car.photos.all %}
+            {% for photo in photos %}
                 <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Car Photo' }}">
+            {% empty %}
+                <p>No photos available for this car.</p>
             {% endfor %}
         </div>
     </div>

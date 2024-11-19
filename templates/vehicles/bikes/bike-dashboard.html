@@ -7,12 +7,13 @@
             {% for bike in all_bikes %}
                 <div class="bike-card">
                     <div class="left"> 
-                        {% if bike.photos.exists %}  
-                            <img src="{{ bike.photos.first.image.url }}" alt='First photo of the bike'>
-                        {% else %} 
-                            <img src="{% static 'images/stock_bike_photo.png' %}" 
-                                 alt="Stock Bike Photo">
+                        <a href="{% url 'bike-details' bike.pk %}">
+                        {% if bike.has_photo %}
+                            <img src="{{ bike.first_photo_url }}" alt="First photo of the bike">
+                        {% else %}
+                            <img src="{% static 'images/stock_bike_photo.png' %}" alt="Default Bike Image">
                         {% endif %}
+                        </a>
                     </div>
                     <div class="right">
                         <div class="right-top">

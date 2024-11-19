@@ -92,6 +92,20 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.owner-actions .btn-add-photo {
+    background-color: #28a745;
+    font-size: 1.6rem;
+}
+
+.owner-actions .btn-add-photo:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.owner-actions .btn-add-photo i {
+    margin-right: 8px;
+}
+
 .owner-actions .btn-edit {
     background-color: #007bff;
 }
@@ -127,7 +141,8 @@
 
 .car-detail-photos img {
     width: 100%;
-    max-width: 400px;
+    max-width: 200px;
+    max-height: 200px;
     height: auto;
     border-radius: 5px;
     margin: 10px;

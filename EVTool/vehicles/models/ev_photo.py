@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
-from EVTool.vehicles.models import EVCar, EVBike
+
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 
 def validate_image_size(image):
@@ -9,21 +11,22 @@ def validate_image_size(image):
         raise ValidationError("The image file size is too large. Please upload a smaller file.")
 
 
-class EvCarPhoto(models.Model):
-    car = models.ForeignKey(EVCar, related_name='photos', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='evcar_photos/',
-                              validators=[validate_image_size,],)
+class EVPhoto(models.Model):
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+
+    # THIS IS MANY-ONE-FIELD
+    # generates model type field, for id(table_pk) 15 -> content_type is evcarphoto,
+    # for if id(table_pk) 16 -> content_type is evcarbike,
+    # object_id stores the id of the object that the photo is attached to;
+
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    image = models.ImageField(
+        upload_to='ev_photos/',
+        validators=[validate_image_size]
+    )
     description = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f"Photo for {self.car} - ({self.description})"
-
-
-class EvBikePhoto(models.Model):
-    bike = models.ForeignKey(EVBike, related_name='photos', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='evbike_photos/',
-                              validators=[validate_image_size, ], )
-    description = models.CharField(max_length=255, blank=True, null=True)
-
-    def __str__(self):
-        return f"Photo for {self.bike} - ({self.description})"
+        return f"Photo for {self.content_object} - ({self.description})"

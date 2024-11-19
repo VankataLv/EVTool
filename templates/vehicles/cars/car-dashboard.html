@@ -6,13 +6,14 @@
         {% if all_cars %}
             {% for car in all_cars %}
                 <div class="car-card">
-                    <div class="left"> 
-                        {% if car.photos.exists %}  
-                            <img src="{{ car.photos.first.image.url }}" alt='First photo of the car'>
-                        {% else %} 
-                            <img src="{% static 'images/stock_car_photo.png' %}" 
-                                 alt="Stock Car Photo">
+                    <div class="left">
+                        <a href="{% url 'car-details' car.pk %}">
+                        {% if car.has_photo %}
+                                <img src="{{ car.first_photo_url }}" alt="First photo of the car">
+                        {% else %}
+                            <img src="{% static 'images/stock_car_photo.png' %}" alt="Stock Car Photo">
                         {% endif %}
+                        </a>
                     </div>
                     <div class="right">
                         <div class="right-top">

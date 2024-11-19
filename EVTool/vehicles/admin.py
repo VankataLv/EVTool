@@ -2,8 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 
 from EVTool.vehicles.forms import EVCarChangeForm, EVCarCreateForm
-from EVTool.vehicles.models import EVCar, Municipality, Color, Brand, CarModel, EvCarPhoto, EvBikePhoto, EVBike, \
-    BikeModel
+from EVTool.vehicles.models import EVCar, Municipality, Color, Brand, CarModel, EVPhoto, EVBike, BikeModel
 from django.utils.html import mark_safe
 
 
@@ -19,11 +18,10 @@ class EvCarAdmin(ModelAdmin):
     list_filter = ('brand', 'year', 'color', )
 
     def first_photo(self, obj):
-        photo = obj.photos.first()
-        if photo and photo.image:
-            return mark_safe(f'<img src="{photo.image.url}" width="50" height="50" style="object-fit: cover;" />')
+        first_photo = EVPhoto.objects.filter(content_type__model='evbike', object_id=obj.pk).first()
+        if first_photo and first_photo.image:
+            return mark_safe(f'<img src="{first_photo.image.url}" width="50" height="50" />')
         return '-'
-
     first_photo.short_description = 'First Photo'
 
 
@@ -62,20 +60,6 @@ class CarModelAdmin(ModelAdmin):
     list_filter = ('brand',)
 
 
-@admin.register(EvCarPhoto)
-class EvCarPhotoAdmin(ModelAdmin):
-    list_display = ('pk', 'car', 'image_display', 'description')
-    search_fields = ('car',)
-    ordering = ('car',)
-    list_filter = ('car',)
-
-    def image_display(self, obj):
-        if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" width="50" height="50" />')
-        return '-'
-    image_display.short_description = 'Image'
-
-
 # BIKES logic --------------------------------------------------
 @admin.register(EVBike)
 class EVBikeAdmin(admin.ModelAdmin):
@@ -86,28 +70,31 @@ class EVBikeAdmin(admin.ModelAdmin):
     list_filter = ('brand', 'year', 'color', 'body_type',)
 
     def first_photo(self, obj):
-        photo = obj.photos.first()
-        if photo and photo.image:
-            return mark_safe(f'<img src="{photo.image.url}" width="50" height="50" style="object-fit: cover;" />')
+        first_photo = EVPhoto.objects.filter(content_type__model='evbike', object_id=obj.pk).first()
+        if first_photo and first_photo.image:
+            return mark_safe(f'<img src="{first_photo.image.url}" width="50" height="50" />')
         return '-'
-
     first_photo.short_description = 'First Photo'
 
 
 @admin.register(BikeModel)
 class BikeModelAdmin(ModelAdmin):
-        list_display = ('pk', 'brand', 'name')
-        search_fields = ('name',)
-        ordering = ('brand__name', 'name',)
-        list_filter = ('brand',)
+    list_display = ('pk', 'brand', 'name')
+    search_fields = ('name',)
+    ordering = ('brand__name', 'name',)
+    list_filter = ('brand',)
 
 
-@admin.register(EvBikePhoto)
-class EvBikePhotoAdmin(ModelAdmin):
-    list_display = ('pk', 'bike', 'image_display', 'description')
-    search_fields = ('bike',)
-    ordering = ('bike',)
-    list_filter = ('bike',)
+@admin.register(EVPhoto)
+class EVPhotoAdmin(ModelAdmin):
+    list_display = ('pk', 'related_object', 'image_display', 'description')
+    search_fields = ('description', 'content_type__model',)
+    ordering = ('content_type', 'object_id',)
+    list_filter = ('content_type',)
+
+    def related_object(self, obj):
+        return str(obj.content_object)
+    related_object.short_description = 'Related Object'
 
     def image_display(self, obj):
         if obj.image:
