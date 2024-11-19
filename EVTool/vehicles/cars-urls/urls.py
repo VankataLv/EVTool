@@ -23,3 +23,17 @@ urlpatterns = (
         ])),
     ])),
 )
+# urlpatterns = (
+#     path('', CarDashboardView.as_view(), name='car-dashboard'),
+#     # CRUD for Cars object instance
+#     path('create/', CarAddPage.as_view(), name='car-add'),
+#     path('<int:pk>/', CarDetailView.as_view(), name='car-details'),
+#     path('<int:pk>/edit/', CarEditView.as_view(), name='car-edit'),
+#     path('<int:pk>/delete/', CarDeleteView.as_view(), name='car-delete'),
+#
+#     # CRUD for Photos object instance
+#     path('<int:car_pk>/photos/add/', AddPhotoView.as_view(), name='car-photo-add'),
+#     path('<int:car_pk>/photos/<int:photo_pk>/', PhotoDetailsView.as_view(), name='car-photo-details'),
+#     path('<int:car_pk>/photos/<int:photo_pk>/edit/', PhotoEditView.as_view(), name='car-photo-edit'),
+#     path('<int:car_pk>/photos/<int:photo_pk>/delete/', PhotoDeleteView.as_view(), name='car-photo-delete'),
+# )

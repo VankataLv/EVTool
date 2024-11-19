@@ -18,12 +18,11 @@ class EvCarAdmin(ModelAdmin):
     list_filter = ('brand', 'year', 'color', )
 
     def first_photo(self, obj):
-        first_photo = EVPhoto.objects.filter(content_type__model='evbike', object_id=obj.pk).first()
+        first_photo = EVPhoto.objects.filter(content_type__model='evcar', object_id=obj.pk).first()
         if first_photo and first_photo.image:
             return mark_safe(f'<img src="{first_photo.image.url}" width="50" height="50" />')
         return '-'
     first_photo.short_description = 'First Photo'
-
 
 @admin.register(Municipality)
 class MunicipalityAdmin(ModelAdmin):

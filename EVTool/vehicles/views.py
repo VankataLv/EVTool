@@ -58,6 +58,7 @@ class CarDetailView(LoginRequiredMixin, DetailView):
 
         return context
 
+
 class CarEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = EVCar
     template_name = 'vehicles/cars/car-edit.html'
@@ -100,6 +101,7 @@ class BikeDashboardView(ListView):
 
         return context
 
+
 class BikeAddPage(LoginRequiredMixin, CreateView):
     model = EVBike
     form_class = EVBikeCreateForm
@@ -128,6 +130,7 @@ class BikeDetailView(LoginRequiredMixin, DetailView):
         context['photos'] = EVPhoto.objects.filter(content_type=content_type, object_id=bike.pk)
 
         return context
+
 
 class BikeEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = EVBike
@@ -187,10 +190,7 @@ class AddPhotoView(LoginRequiredMixin, CreateView):
 class PhotoDetailsView(LoginRequiredMixin, DetailView):
     model = EVPhoto
     template_name = 'vehicles/photos/photo-details-page.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+    context_object_name = 'photo'
 
 
 class PhotoEditView(LoginRequiredMixin, UpdateView):

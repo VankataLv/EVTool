@@ -54,7 +54,7 @@
         <div class="car-detail-photos">
             <h3>Car Photos:</h3>
             {% for photo in photos %}
-                <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Car Photo' }}">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Car Photo' }}" class="car-photo">
             {% empty %}
                 <p>No photos available for this car.</p>
             {% endfor %}
