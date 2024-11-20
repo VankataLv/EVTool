@@ -62,3 +62,7 @@ class BaseEV(models.Model):
         null=True,
         blank=True,
     )
+
+    date_published = models.DateTimeField(
+        auto_now_add=True,
+    )

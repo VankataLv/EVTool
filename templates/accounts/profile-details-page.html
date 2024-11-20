@@ -4,7 +4,7 @@
 {% block main_content %}
     <div class="profile-details-box">
         {% if object.profile.profile_picture %}
-            <img src="{{ object.profile.profile_picture }}" alt="{% static 'images/stock_user.png' %}" />
+            <img src="{{ object.profile.profile_picture.url }}" alt="Profile Pic" />
         {% else %}
             <img src="{% static 'images/stock_user.png' %}" alt="profile icon" />
         {% endif %}

@@ -17,12 +17,13 @@
             <p><strong>Year:</strong> {% if bike.year %}{{ bike.year }}{% else %}No data{% endif %}</p>
             <p><strong>VIN:</strong> {% if bike.vin %}{{ bike.vin }}{% else %}No data{% endif %}</p>
             <p><strong>Description:</strong> {% if bike.description %}{{ bike.description }}{% else %}No data{% endif %}</p>
+            <p><strong>Published on:</strong> {{ bike.date_published|date:"d-M-Y" }}</p>
         </div>
         <div class="car-detail-owner-info">
             <h2>Owner information</h2>
             <div class="owner-info-content">
                 {% if bike.owner.profile.profile_picture %}
-                    <img src="{{ bike.owner.profile.profile_picture }}" alt="{% static 'images/stock_user.png' %}" />
+                    <img src="{{ bike.owner.profile.profile_picture.url }}" alt="{% static 'images/stock_user.png' %}" />
                 {% else %}
                     <img src="{% static 'images/stock_user.png' %}" alt="profile icon" />
                 {% endif %}

@@ -1,6 +1,6 @@
-from django import forms
 from django.forms import ModelForm
-from EVTool.vehicles.models import EVCar, EVBike, EVPhoto
+from EVTool.vehicles.models import EVCar, EVBike
+from EVTool.vehicles.models.ev_car_bike_photo import EVCarPhoto, EVBikePhoto
 
 
 class EVVehicleForm(ModelForm):
@@ -10,7 +10,6 @@ class EVVehicleForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Disable all fields for the delete form, if needed
         if hasattr(self, 'disable_fields') and self.disable_fields:
             for field in self.fields.values():
                 field.widget.attrs['disabled'] = True
@@ -57,28 +56,52 @@ class EVBikeDeleteForm(EVVehicleForm):
     disable_fields = True
 
 
-# EVPhoto forms --------------------------------
-class EVPhotoCreateForm(ModelForm):
+# EVPhotoCreate forms --------------------------------
+class EVCarPhotoCreateForm(ModelForm):
     class Meta:
-        model = EVPhoto
-        exclude = ['content_type', 'object_id',]
+        model = EVCarPhoto
+        fields = ['image', 'description',]
 
 
-class EVPhotoEditForm(ModelForm):
+class EVBikePhotoCreateForm(ModelForm):
     class Meta:
-        model = EVPhoto
+        model = EVBikePhoto
+        fields = ['image', 'description',]
+
+# EVPhotoEdit forms --------------------------------
+
+
+class EVCarPhotoEditForm(ModelForm):
+    class Meta:
+        model = EVCarPhoto
         fields = ['image', 'description']
 
 
-class EVPhotoDeleteForm(ModelForm):
+class EVBikePhotoEditForm(ModelForm):
     class Meta:
-        model = EVPhoto
-        fields = '__all__'
+        model = EVBikePhoto
+        fields = ['image', 'description']
 
+
+# EVPhotoDelete forms --------------------------------
+class PhotoDeleteForm(ModelForm):
     disable_fields = True
+
+    class Meta:
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['disabled'] = True
             field.widget.attrs['readonly'] = True
+
+
+class EVCarPhotoDeleteForm(PhotoDeleteForm):
+    class Meta(PhotoDeleteForm.Meta):
+        model = EVCarPhoto
+
+
+class EVBikePhotoDeleteForm(PhotoDeleteForm):
+    class Meta(PhotoDeleteForm.Meta):
+        model = EVBikePhoto

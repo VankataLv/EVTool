@@ -50,6 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 10px;
 }
 
 .owner-info-content img {
@@ -68,7 +69,6 @@
 
 .owner-details p {
     margin: 5px 0;
-
 }
 
 .owner-actions {
@@ -139,20 +139,64 @@
     margin-bottom: 15px;
 }
 
-.car-detail-photos img {
-    width: 100%;
-    max-width: 200px;
-    max-height: 200px;
-    height: auto;
-    border-radius: 5px;
-    margin: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
-.car-detail-photos img:hover {
+.photo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #bbbdbf;
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.photo-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.photo-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-delete-photo {
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-delete-photo {
+    background-color: #dc3545;
+}
+
+.btn-delete-photo:hover {
+    background-color: #c82333;
     transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -183,6 +227,16 @@
 
     .owner-details p {
         margin: 5px 0;
+    }
+
+    .photo-gallery {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .photo-item {
+        width: 100%;
+        max-width: 300px;
     }
 
     .car-detail-photos img {

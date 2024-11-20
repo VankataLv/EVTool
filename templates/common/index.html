@@ -5,7 +5,7 @@
     <div class="data-box">
         {% if user.is_authenticated %}
             {% if user.profile.profile_picture %}
-                <img src="{{ user.profile.profile_picture }}" alt="Profile Picture" class="profile-picture">
+                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
             {% else %}
                 <img src="{% static 'images/stock_user.png' %}" alt="profile icon" />
             {% endif %}

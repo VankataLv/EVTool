@@ -1,13 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
 
 from EVTool.vehicles.forms import (
-    EVCarChangeForm, EVCarCreateForm, EVBikeCreateForm, EVBikeChangeForm, EVPhotoCreateForm, EVPhotoEditForm,
+    EVCarChangeForm, EVCarCreateForm, EVBikeCreateForm, EVBikeChangeForm, EVCarPhotoEditForm, EVCarPhotoCreateForm,
+    EVBikePhotoCreateForm,
 )
-from EVTool.vehicles.models import EVCar, EVBike, EVPhoto
+from EVTool.vehicles.models import EVCar, EVBike, EVCarPhoto, EVBikePhoto
 
 
 # Cars Views ----------------------------------------------------------------------------------------
@@ -18,13 +18,13 @@ class CarDashboardView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        car_content_type = ContentType.objects.get_for_model(EVCar)
-
         for car in context['all_cars']:
-            first_photo = EVPhoto.objects.filter(content_type=car_content_type, object_id=car.pk).first()
-            car.has_photo = first_photo is not None
-            car.first_photo_url = first_photo.image.url if first_photo else None
+            first_photo = car.car_photos.first()
+            if first_photo:
+                car.has_photo = True
+                car.first_photo_url = first_photo.image.url
+            else:
+                car.has_photo = False
 
         return context
 
@@ -52,9 +52,7 @@ class CarDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         car = self.object
-
-        content_type = ContentType.objects.get_for_model(EVCar)
-        context['photos'] = EVPhoto.objects.filter(content_type=content_type, object_id=car.pk)
+        context['photos'] = EVCarPhoto.objects.filter(car=car)
 
         return context
 
@@ -92,12 +90,13 @@ class BikeDashboardView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        bike_content_type = ContentType.objects.get_for_model(EVBike)
-
         for bike in context['all_bikes']:
-            first_photo = EVPhoto.objects.filter(content_type=bike_content_type, object_id=bike.pk).first()
-            bike.has_photo = first_photo is not None
-            bike.first_photo_url = first_photo.image.url if first_photo else None
+            first_photo = bike.bike_photos.first()
+            if first_photo:
+                bike.has_photo = True
+                bike.first_photo_url = first_photo.image.url
+            else:
+                bike.has_photo = False
 
         return context
 
@@ -125,9 +124,7 @@ class BikeDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         bike = self.object
-
-        content_type = ContentType.objects.get_for_model(EVBike)
-        context['photos'] = EVPhoto.objects.filter(content_type=content_type, object_id=bike.pk)
+        context['photos'] = EVBikePhoto.objects.filter(bike=bike)
 
         return context
 
@@ -158,53 +155,60 @@ class BikeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 # Photos Views --------------------------------------------------------------------------------------
-class AddPhotoView(LoginRequiredMixin, CreateView):
-    model = EVPhoto
-    form_class = EVPhotoCreateForm
-    template_name = 'vehicles/photos/photo-add-page.html'
+# -------- Add Photos Views --------------------------------------------------------------------------------------
+class AddCarPhotoView(LoginRequiredMixin, CreateView):
+    model = EVCarPhoto
+    form_class = EVCarPhotoCreateForm
+    template_name = 'vehicles/photos/car-photo-add-page.html'
 
     def get_success_url(self):
-        photo = self.object
-        if isinstance(photo.content_object, EVCar):
-            return reverse_lazy('car-details', kwargs={'pk': photo.content_object.pk})
-        elif isinstance(photo.content_object, EVBike):
-            return reverse_lazy('bike-details', kwargs={'pk': photo.content_object.pk})
+        car = self.object.car
+        return reverse_lazy('car-details', kwargs={'pk': car.pk})
 
     def form_valid(self, form):
-        # Dynamically fill `content_type` and `object_id`
-        obj_pk = self.kwargs.get('car_pk') or self.kwargs.get('bike_pk')
-        obj = EVCar.objects.filter(pk=obj_pk).first() or EVBike.objects.filter(pk=obj_pk).first()
-        if obj:
-            content_type = ContentType.objects.get_for_model(obj)
-            photo = form.save(commit=False)
-            photo.content_type = content_type
-            photo.object_id = obj_pk
-
-            photo.save()
-            return super().form_valid(form)
-        else:
-            form.add_error(None, "Invalid object.")
-            return self.form_invalid(form)
+        car_pk = self.kwargs['car_pk']
+        car = EVCar.objects.get(pk=car_pk)
+        form.instance.car = car
+        return super().form_valid(form)
 
 
+class AddBikePhotoView(LoginRequiredMixin, CreateView):
+    model = EVBikePhoto
+    form_class = EVBikePhotoCreateForm
+    template_name = 'vehicles/photos/bike-photo-add-page.html'
+
+    def get_success_url(self):
+        bike = self.object.bike
+        return reverse_lazy('bike-details', kwargs={'pk': bike.pk})
+
+    def form_valid(self, form):
+        bike_pk = self.kwargs['bike_pk']
+        bike = EVBike.objects.get(pk=bike_pk)
+        form.instance.bike = bike
+        return super().form_valid(form)
+
+# -------- Details Photos Views --------------------------------------------------------------------------------------
 class PhotoDetailsView(LoginRequiredMixin, DetailView):
-    model = EVPhoto
-    template_name = 'vehicles/photos/photo-details-page.html'
-    context_object_name = 'photo'
+    pass
+    # model = EVPhoto
+    # template_name = 'vehicles/photos/photo-details-page.html'
+    # context_object_name = 'photo'
 
-
+# -------- Edit Photos Views --------------------------------------------------------------------------------------
 class PhotoEditView(LoginRequiredMixin, UpdateView):
-    model = EVPhoto
-    template_name = 'vehicles/photos/photo-edit-page.html'
-    form_class = EVPhotoEditForm
+    pass
+    # model = EVPhoto
+    # template_name = 'vehicles/photos/photo-edit-page.html'
+    # form_class = EVPhotoEditForm
+    #
+    # def get_success_url(self):
+    #     return reverse_lazy('photo-details', kwargs={'pk': self.object.pk})
 
-    def get_success_url(self):
-        return reverse_lazy('photo-details', kwargs={'pk': self.object.pk})
-
-
+# -------- Delete Photos Views --------------------------------------------------------------------------------------
 class PhotoDeleteView(LoginRequiredMixin, DeleteView):
-    model = EVPhoto
-    template_name = 'vehicles/photos/photo-delete-page.html'
-
-    def get_success_url(self):
-        return reverse_lazy('show-home-page')
+    pass
+    # model = EVPhoto
+    # template_name = 'vehicles/photos/photo-delete-page.html'
+    #
+    # def get_success_url(self):
+    #     return reverse_lazy('show-home-page')

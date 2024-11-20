@@ -51,7 +51,8 @@ class Profile(models.Model):
         max_length=12,
         validators=[phone_number_validator,]
     )
-    profile_picture = models.URLField(
+    profile_picture = models.ImageField(
+        upload_to="photos/profiles/",
         blank=True,
         null=True,
     )

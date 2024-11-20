@@ -23,8 +23,14 @@
                     </form>
                     
                     <a href="{% url 'profile-details' request.user.pk %}">
-                        <button type="button"><i class="fas fa-list"></i> View Profile</button>
-        </a>
+                        <button type="button"><i class="fas fa-list"></i> View 
+                            {% if user.profile.nickname %}
+                                {{ user.profile.nickname }}
+                            {% else %}
+                                {{ user.username }}
+                            {% endif %}</button>
+                    </a>
+                    
                     
                 {% else %}
                     <a href="{% url 'login' %}">

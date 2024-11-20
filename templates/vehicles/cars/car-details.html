@@ -20,12 +20,13 @@
             <p><strong>Year:</strong> {% if car.year %}{{ car.year }}{% else %}No data{% endif %}</p>
             <p><strong>VIN:</strong> {% if car.vin %}{{ car.vin }}{% else %}No data{% endif %}</p>
             <p><strong>Description:</strong> {% if car.description %}{{ car.description }}{% else %}No data{% endif %}</p>
+            <p><strong>Published on:</strong> {{ car.date_published|date:"d-M-Y" }}</p>
         </div>
         <div class="car-detail-owner-info">
             <h2>Owner information</h2>
             <div class="owner-info-content">
                 {% if car.owner.profile.profile_picture %}
-                    <img src="{{ car.owner.profile.profile_picture }}" alt="{% static 'images/stock_user.png' %}" />
+                    <img src="{{ car.owner.profile.profile_picture.url }}" alt="{% static 'images/stock_user.png' %}" />
                 {% else %}
                     <img src="{% static 'images/stock_user.png' %}" alt="profile icon" />
                 {% endif %}
@@ -39,7 +40,7 @@
             {% if car.owner == user %}
                 <div class="owner-actions">
                     <a href="{% url 'car-photo-add' car.pk %}" class="btn btn-add-photo">
-                        <i class="fas fa-camera"></i> Add photos
+                        <i class="fas fa-camera"></i> Add a photo
                     </a>
                     <a href="{% url 'car-edit' car.pk %}" class="btn btn-edit">
                         <i class="fas fa-edit"></i> Edit Car
@@ -53,11 +54,22 @@
         </div>
         <div class="car-detail-photos">
             <h3>Car Photos:</h3>
-            {% for photo in photos %}
-                    <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Car Photo' }}" class="car-photo">
-            {% empty %}
-                <p>No photos available for this car.</p>
-            {% endfor %}
+            <div class="photo-gallery">
+                {% for photo in photos %}
+                    <div class="photo-item">
+                        <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Car Photo' }}" class="car-photo">
+                        {% if car.owner == user %}
+                        <div class="photo-buttons">
+                            <a href="{% url 'car-photo-delete' car.pk photo.pk %}" class="btn btn-delete-photo">
+                                Delete Photo
+                            </a>
+                        {% endif %}    
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No photos available for this car.</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
