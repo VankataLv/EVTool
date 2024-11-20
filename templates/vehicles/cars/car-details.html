@@ -58,7 +58,7 @@
                 {% for photo in photos %}
                     <div class="photo-item">
                         <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Car Photo' }}" class="car-photo">
-                        {% if car.owner == user %}
+                        {% if car.owner == user or user.is_staff or user.is_superuser %}
                         <div class="photo-buttons">
                             <a href="{% url 'car-photo-delete' car.pk photo.pk %}" class="btn btn-delete-photo">
                                 Delete Photo
