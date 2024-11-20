@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            {% if car.owner == user %}
+            {% if car.owner == user or user.is_staff or user.is_superuser %}
                 <div class="owner-actions">
                     <a href="{% url 'car-photo-add' car.pk %}" class="btn btn-add-photo">
                         <i class="fas fa-camera"></i> Add a photo

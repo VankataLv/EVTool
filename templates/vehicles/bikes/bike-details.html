@@ -50,12 +50,23 @@
         
         </div>
         <div class="car-detail-photos">
-            <h3>Bike Photos:</h3>
-            {% for photo in photos %}
-                <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Bike Photo' }}">
-            {% empty %}
-                <p>No photos available for this bike.</p>
-            {% endfor %}
+            <h3>Car Photos:</h3>
+            <div class="photo-gallery">
+                {% for photo in photos %}
+                    <div class="photo-item">
+                        <img src="{{ photo.image.url }}" alt="{{ photo.description|default:'Bike Photo' }}" class="car-photo">
+                        {% if bike.owner == user or user.is_staff or user.is_superuser %}
+                            <div class="photo-buttons">
+                            <a href="{% url 'car-photo-delete' bike.pk photo.pk %}" class="btn btn-delete-photo">
+                                Delete Photo
+                            </a>
+                        {% endif %}    
+                            </div>
+                    </div>
+                        {% empty %}
+                            <p>No photos available for this bike.</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
