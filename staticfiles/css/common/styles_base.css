@@ -10,6 +10,7 @@
 @import url(../vehicles/car-bike-details.css);
 @import url(../vehicles/car-bike-edit-delete-create-page.css);
 @import url(../vehicles/photo-details.css);
+@import url(../vehicles/car-bike-photo-delete.css);
 
 body {
     margin: 0 auto;

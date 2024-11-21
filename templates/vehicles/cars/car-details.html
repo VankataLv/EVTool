@@ -61,7 +61,7 @@
                         {% if car.owner == user or user.is_staff or user.is_superuser %}
                         <div class="photo-buttons">
                             <a href="{% url 'car-photo-delete' car.pk photo.pk %}" class="btn btn-delete-photo">
-                                Delete Photo
+                                View or Delete Photo
                             </a>
                         {% endif %}    
                         </div>

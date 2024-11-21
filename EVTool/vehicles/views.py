@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
 
 from EVTool.vehicles.forms import (
-    EVCarChangeForm, EVCarCreateForm, EVBikeCreateForm, EVBikeChangeForm, EVCarPhotoEditForm, EVCarPhotoCreateForm,
+    EVCarChangeForm, EVCarCreateForm, EVBikeCreateForm, EVBikeChangeForm, EVCarPhotoCreateForm,
     EVBikePhotoCreateForm,
 )
 from EVTool.vehicles.models import EVCar, EVBike, EVCarPhoto, EVBikePhoto
@@ -187,28 +187,31 @@ class AddBikePhotoView(LoginRequiredMixin, CreateView):
         form.instance.bike = bike
         return super().form_valid(form)
 
-# -------- Details Photos Views --------------------------------------------------------------------------------------
-class PhotoDetailsView(LoginRequiredMixin, DetailView):
-    pass
-    # model = EVPhoto
-    # template_name = 'vehicles/photos/photo-details-page.html'
-    # context_object_name = 'photo'
 
-# -------- Edit Photos Views --------------------------------------------------------------------------------------
-class PhotoEditView(LoginRequiredMixin, UpdateView):
-    pass
-    # model = EVPhoto
-    # template_name = 'vehicles/photos/photo-edit-page.html'
-    # form_class = EVPhotoEditForm
-    #
-    # def get_success_url(self):
-    #     return reverse_lazy('photo-details', kwargs={'pk': self.object.pk})
+# -------- Details Delete Photos Views --------------------------------------------------------------------------------
+class PhotoCarDetailsDeleteView(LoginRequiredMixin, DeleteView):
+    model = EVCarPhoto
+    template_name = 'vehicles/photos/car-photo-details-delete-page.html'
 
-# -------- Delete Photos Views --------------------------------------------------------------------------------------
-class PhotoDeleteView(LoginRequiredMixin, DeleteView):
-    pass
-    # model = EVPhoto
-    # template_name = 'vehicles/photos/photo-delete-page.html'
-    #
-    # def get_success_url(self):
-    #     return reverse_lazy('show-home-page')
+    def get_success_url(self):
+        car = self.object.car
+        return reverse_lazy('car-details', kwargs={'pk': car.pk})
+
+    def get_object(self, queryset=None):
+        car_pk = self.kwargs.get('car_pk')
+        photo_pk = self.kwargs.get('photo_pk')
+        return self.model.objects.get(pk=photo_pk, car_id=car_pk)
+
+
+class PhotoBikeDetailsDeleteView(LoginRequiredMixin, DeleteView):
+    model = EVBikePhoto
+    template_name = 'vehicles/photos/bike-photo-details-delete-page.html'
+
+    def get_success_url(self):
+        bike = self.object.bike
+        return reverse_lazy('bike-details', kwargs={'pk': bike.pk})
+
+    def get_object(self, queryset=None):
+        bike_pk = self.kwargs.get('bike_pk')
+        photo_pk = self.kwargs.get('photo_pk')
+        return self.model.objects.get(pk=photo_pk, bike_id=bike_pk)

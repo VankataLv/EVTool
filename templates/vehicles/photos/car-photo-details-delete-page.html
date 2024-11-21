@@ -1,0 +1,20 @@
+{% extends 'common/base.html' %}
+
+{% block main_content %}
+<div class="delete-photo-container">
+    <h1>Photo of {{ object.car }}</h1>
+    {% if object.description %}
+        <p>{{ object.description }}</p>
+    {% endif %}
+    
+    <div class="photo-preview">
+        <img src="{{ object.image.url }}" alt="Car Photo">
+    </div>
+    <a href="{% url 'car-details' object.car.pk %}" class="cancel-button">Back to Car details</a>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="delete-button">Delete Photo</button>
+    </form>
+    
+</div>
+{% endblock %}

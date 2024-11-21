@@ -16,3 +16,6 @@ class IndexView(TemplateView):
         context['users_count'] = AppUser.objects.all().count()
         return context
 
+
+class UnderConstructionView(TemplateView):
+    template_name = 'common/under-construction.html'

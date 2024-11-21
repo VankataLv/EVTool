@@ -1,0 +1,82 @@
+.delete-photo-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.delete-photo-container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.delete-photo-container p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #666;
+}
+
+.photo-preview {
+    margin-bottom: 20px;
+}
+
+.photo-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.photo-preview p {
+    font-size: 14px;
+    color: #555;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+.cancel-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #3498db;
+    text-decoration: none;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+}
+
+.cancel-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    background-color: #95a5a6;
+    color: white;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: #7f8c8d;
+}

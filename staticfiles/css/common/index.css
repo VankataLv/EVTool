@@ -31,8 +31,8 @@ main {
 }
 
 .data-box .profile-picture {
-    width: 120px;
-    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
     border-radius: 50%;
     margin-bottom: 20px;
     border: 3px solid #004d99;

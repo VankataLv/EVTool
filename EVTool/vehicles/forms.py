@@ -10,7 +10,7 @@ class EVVehicleForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if hasattr(self, 'disable_fields') and self.disable_fields:
+        if hasattr(self, 'disable_fields') and self.disable_fields:  # for the Delete Forms
             for field in self.fields.values():
                 field.widget.attrs['disabled'] = True
                 field.widget.attrs['readonly'] = True

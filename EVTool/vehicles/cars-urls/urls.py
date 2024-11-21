@@ -1,7 +1,7 @@
 from django.urls import path, include
 
-from EVTool.vehicles.views import CarDashboardView, CarDetailView, CarEditView, CarDeleteView, CarAddPage, AddCarPhotoView, \
-    PhotoDetailsView, PhotoEditView, PhotoDeleteView
+from EVTool.vehicles.views import CarDashboardView, CarDetailView, CarEditView, CarDeleteView, CarAddPage, \
+    AddCarPhotoView, PhotoCarDetailsDeleteView
 
 urlpatterns = (
     path('', CarDashboardView.as_view(), name='car-dashboard'),
@@ -16,11 +16,7 @@ urlpatterns = (
     # CRUD for Photos obj instance--------------------------------------------------
     path('<int:car_pk>/photos/', include([
         path('add/', AddCarPhotoView.as_view(), name='car-photo-add'),
-        path('<int:photo_pk>/', include([
-            path('', PhotoDetailsView.as_view(), name='car-photo-details'),
-            path('edit/', PhotoEditView.as_view(), name='car-photo-edit'),
-            path('delete/', PhotoDeleteView.as_view(), name='car-photo-delete'),
-        ])),
+        path('<int:photo_pk>/delete/', PhotoCarDetailsDeleteView.as_view(), name='car-photo-delete')
     ])),
 )
 
