@@ -15,7 +15,7 @@ class CarDashboardView(ListView):
     model = EVCar
     template_name = 'vehicles/cars/car-dashboard.html'
     context_object_name = 'all_cars'
-    paginate_by = 5
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -91,7 +91,7 @@ class BikeDashboardView(ListView):
     model = EVBike
     template_name = 'vehicles/bikes/bike-dashboard.html'
     context_object_name = 'all_bikes'
-    paginate_by = 5
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -107,6 +107,7 @@ class BikeDashboardView(ListView):
 
     def get_queryset(self):
         return EVBike.objects.all().order_by('date_published')
+
 
 class BikeAddPage(LoginRequiredMixin, CreateView):
     model = EVBike
