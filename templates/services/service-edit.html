@@ -1,1 +1,26 @@
-<h1>This is edit form html</h1>
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block main_content %}
+        <div class="car-edit-box">
+        <h2>Edit Service Details</h2>
+
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+
+                <p class="error"> {{ field.errors }} </p>
+                <div class="label-input">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                <br>
+
+            {% endfor %}
+        
+            <button class="edit-btn" type="submit">Edit Service</button>
+        </form>
+    </div>
+{% endblock %}

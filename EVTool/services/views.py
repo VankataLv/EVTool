@@ -58,12 +58,14 @@ class ServiceEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class ServiceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Service
-    form_class = ServiceDeleteForm
     template_name = 'services/service-delete.html'
 
     def get_success_url(self):
         return reverse_lazy('service-dashboard')
 
+    def get_object(self, queryset=None):
+        return get_object_or_404(Service, slug=self.kwargs['slug'])
+
     def test_func(self):
-        service = get_object_or_404(Service, slug=self.kwargs['slug'])
+        service = self.get_object()
         return self.request.user == service.owner or self.request.user.is_staff or self.request.user.is_superuser

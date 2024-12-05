@@ -1,1 +1,17 @@
-<h1>this is the create service html</h1>
+{% extends 'common/base.html' %}
+
+{% block main_content %}
+
+    <div class="car-edit-box">
+        <h2>Add Service</h2>
+
+        <form method="post" action="{% url 'service-add' %}">
+            
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="add-btn" type="submit">Add Service</button>
+        </form>
+
+    </div>
+
+{% endblock %}

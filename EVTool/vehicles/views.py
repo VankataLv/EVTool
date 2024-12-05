@@ -18,7 +18,7 @@ class CarDashboardView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        queryset = EVCar.objects.all().order_by('date_published')
+        queryset = EVCar.objects.all().order_by('owner__is_business', '-date_published')
 
         brand = self.request.GET.get('brand')
         if brand:
@@ -125,7 +125,7 @@ class BikeDashboardView(ListView):
 
 
     def get_queryset(self):
-        queryset = EVBike.objects.all().order_by('date_published')
+        queryset = EVBike.objects.all().order_by('owner__is_business', '-date_published')
 
         brand = self.request.GET.get('brand')
         if brand:
