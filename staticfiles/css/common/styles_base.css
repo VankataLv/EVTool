@@ -6,11 +6,16 @@
 @import url(../accounts/profile-details.css);
 @import url(../accounts/profile-edit-delete-page.css);
 @import url(index.css);
+@import url(paginator.css);
+@import url(../vehicles/car-bike-search-bar.css);
 @import url(../vehicles/car-bike-dashboard.css);
 @import url(../vehicles/car-bike-details.css);
 @import url(../vehicles/car-bike-edit-delete-create-page.css);
 @import url(../vehicles/photo-details.css);
 @import url(../vehicles/car-bike-photo-delete.css);
+@import url(../services/services_search-bar.css);
+@import url(../services/services-dashboard.css);
+
 
 body {
     margin: 0 auto;

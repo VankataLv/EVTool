@@ -25,8 +25,12 @@
                 <a href="{% url 'bike-add' %}" class="btn btn-add">
                     <i class="fas fa-motorcycle"></i> Add a bike
                 </a>
+                {% if user.is_business or user.is_staff or user.is_superuser%}
+                    <a href="{% url 'service-add' %}" class="btn btn-add">
+                        <i class="fa-regular fa-handshake"></i> Add a service
+                    </a>
+                {% endif %}
             </div>
-    </div>
         {% else %}
             <h3>We currently have:</h3>
             <div class="top-row">
@@ -56,19 +60,19 @@
             <span>Bikes for Sale</span>
         </a>
         
-        <a href="{% url 'under-construction' %}" class="card">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            <span>Repair & Maintenance</span>
-        </a>
-        
-        <a href="{% url 'under-construction' %}" class="card">
+        <a href="{% url 'service-dashboard' %}" class="card">
             <i class="fa-regular fa-handshake"></i>
             <span>Services & Insurance</span>
         </a>
         
+        <a href=https://sofiazona.com/" class="card">
+            <i class="fa-solid fa-square-parking"></i>
+            <span>Parking in Sofia</span>
+        </a>
+        
         <a href="https://ev-database.org/" class="card">
             <i class="fa-solid fa-database"></i>
-            <span>Database</span>
+            <span> EV Database</span>
         </a>
         
         <a href="https://vsichkotok.bg/" class="card">

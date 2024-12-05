@@ -4,12 +4,10 @@ from django.contrib.auth import get_user_model
 
 from EVTool.accounts.forms import AppUserCreationForm, AppUserChangeForm
 from EVTool.accounts.models import Profile
-
-UserModel = get_user_model()
-
-
 from django.utils.html import format_html
 from django.urls import reverse
+
+UserModel = get_user_model()
 
 
 @admin.register(UserModel)

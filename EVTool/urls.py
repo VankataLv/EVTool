@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('EVTool.accounts.urls')),
     path('vehicles/cars/', include('EVTool.vehicles.cars-urls.urls')),
     path('vehicles/bikes/', include('EVTool.vehicles.bikes-urls.urls')),
+    path('services', include('EVTool.services.urls')),
 ]
 
 if settings.DEBUG:

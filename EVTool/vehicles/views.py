@@ -15,10 +15,37 @@ class CarDashboardView(ListView):
     model = EVCar
     template_name = 'vehicles/cars/car-dashboard.html'
     context_object_name = 'all_cars'
-    paginate_by = 3
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = EVCar.objects.all().order_by('date_published')
+
+        brand = self.request.GET.get('brand')
+        if brand:
+            queryset = queryset.filter(brand__name=brand)
+
+        model = self.request.GET.get('model')
+        if model:
+            queryset = queryset.filter(model__name=model)
+
+        body_type = self.request.GET.get('body_type')
+        if body_type:
+            queryset = queryset.filter(body_type=body_type)
+
+        order_by = self.request.GET.get('order_by')
+        order_direction = self.request.GET.get('order_direction', 'asc')  # Default to ascending if no direction is set
+
+        if order_by:
+            if order_direction == 'desc':
+                queryset = queryset.order_by(f'-{order_by}')  # Negative sign for descending order
+            else:
+                queryset = queryset.order_by(order_by)
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         for car in context['all_cars']:
             first_photo = car.car_photos.first()
             if first_photo:
@@ -27,10 +54,13 @@ class CarDashboardView(ListView):
             else:
                 car.has_photo = False
 
-        return context
+        car_brands = EVCar.objects.values_list('brand__name', flat=True).distinct()
+        car_models = EVCar.objects.values_list('model__name', flat=True).distinct()
 
-    def get_queryset(self):
-        return EVCar.objects.all().order_by('date_published')
+        context['car_brands'] = car_brands
+        context['car_models'] = car_models
+        context['BODY_TYPE_CHOICES'] = EVCar.BODY_TYPE_CHOICES
+        return context
 
 
 class CarAddPage(LoginRequiredMixin, CreateView):
@@ -93,8 +123,36 @@ class BikeDashboardView(ListView):
     context_object_name = 'all_bikes'
     paginate_by = 3
 
+
+    def get_queryset(self):
+        queryset = EVBike.objects.all().order_by('date_published')
+
+        brand = self.request.GET.get('brand')
+        if brand:
+            queryset = queryset.filter(brand__name=brand)
+
+        model = self.request.GET.get('model')
+        if model:
+            queryset = queryset.filter(model__name=model)
+
+        body_type = self.request.GET.get('body_type')
+        if body_type:
+            queryset = queryset.filter(body_type=body_type)
+
+        order_by = self.request.GET.get('order_by')
+        order_direction = self.request.GET.get('order_direction', 'asc')  # Default to ascending if no direction is set
+
+        if order_by:
+            if order_direction == 'desc':
+                queryset = queryset.order_by(f'-{order_by}')  # Negative sign for descending order
+            else:
+                queryset = queryset.order_by(order_by)
+
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         for bike in context['all_bikes']:
             first_photo = bike.bike_photos.first()
             if first_photo:
@@ -103,10 +161,13 @@ class BikeDashboardView(ListView):
             else:
                 bike.has_photo = False
 
-        return context
+        bike_brands = EVBike.objects.values_list('brand__name', flat=True).distinct()
+        bike_models = EVBike.objects.values_list('model__name', flat=True).distinct()
 
-    def get_queryset(self):
-        return EVBike.objects.all().order_by('date_published')
+        context['bike_brands'] = bike_brands
+        context['bike_models'] = bike_models
+        context['BODY_TYPE_CHOICES'] = EVBike.BODY_TYPE_CHOICES
+        return context
 
 
 class BikeAddPage(LoginRequiredMixin, CreateView):

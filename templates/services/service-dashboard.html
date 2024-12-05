@@ -1,0 +1,61 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block main_content %}
+    
+    <div class="search-bar">
+        <form method="get">
+            <select name="area">
+                <option value="">Select an area...</option>
+                {% for area_value, area_label in service_area_choices %}
+                    <option value="{{ area_value }}" 
+                            {% if request.GET.area == area_value %} selected 
+                            {% endif %}>
+                        {{ area_label|capfirst }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Search by category of service</button>
+        </form>
+    </div>
+    
+    {% for service in all_services %}
+        <div class="service-card">
+            <h2>{{ service.name }}</h2>
+            <p>Area: {{ service.area|capfirst }}</p>
+            <p>Owner: {{ service.owner.username }}</p>
+            <p>{{ service.text }}</p>
+            
+        
+            {% if user.is_business or user.is_staff or user.is_superuser %}
+                <div class="RUD-options">
+                    <a href="{% url 'service-edit' service.slug %}" class="btn btn-edit">
+                        <i class="fas fa-edit"></i> Edit Service
+                    </a>
+                    <a href="{% url 'service-delete' service.slug %}" class="btn btn-delete">
+                        <i class="fas fa-trash-alt"></i> Delete Service
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        
+    {% endfor %}
+    
+    <!-- Pagination Links -->
+                <div class="pagination">
+                 <span class="step-links">
+                 {% if page_obj.has_previous %}
+                     <a href="?page=1">&laquo; first</a>
+                     <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                 {% endif %}
+                 <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                 </span>
+                 {% if page_obj.has_next %}
+                     <a href="?page={{ page_obj.next_page_number }}">next</a>
+                     <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                 {% endif %}
+                 </span>
+            </div>
+{% endblock %}

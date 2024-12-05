@@ -12,7 +12,13 @@ class EVBike(BaseEV):
         ("Roadster", "Roadster"),
         ("Cross", "Cross"),
         ("Track", "Track"),
-        ("Тricycle", "Тricycle"),
+        ("Tricycle", "Tricycle"),
+        ("Scooter", "Scooter"),
+        ("Sport", "Sport"),
+        ("Touring", "Touring"),
+        ("Cruiser", "Cruiser"),
+        ("Enduro", "Enduro"),
+        ("Adventure", "Adventure"),
     ]
 
     brand = models.ForeignKey(Brand, on_delete=models.DO_NOTHING,)
@@ -27,7 +33,7 @@ class EVBike(BaseEV):
     )
 
     body_type = models.CharField(
-        max_length=15,
+        max_length=15,  # update if longer choices options
         choices=BODY_TYPE_CHOICES,
         default='unknown',
     )

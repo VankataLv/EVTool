@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "EVTool.accounts.apps.AccountsConfig",
-    "EVTool.vehicles.apps.VehiclesConfig"
+    "EVTool.vehicles.apps.VehiclesConfig",
+    "EVTool.services.apps.ServicesConfig"
 ]
 
 MIDDLEWARE = [
