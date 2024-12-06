@@ -1,0 +1,31 @@
+# EVTool
+
+EVTool is a Django application developed as part of the advanced regular exam for Django at SoftUni. The primary goal is to demonstrate proficiency in building a Django-based web application that simulates an EV (Electric Vehicle) car/bike selling platform.
+
+For the detailed requirements, visit the [SoftUni Regular Exam Project Assignment](https://softuni.bg/trainings/resources/officedocument/106509/regular-exam-project-assignment-django-advanced-october-2024/4714) (accessible to signed-in users).
+
+## Features
+- **For Buyers**: View detailed listings of electric cars and bikes available for sale.
+- **For Business Users**: Post ads to sell EV cars and bikes, or promote EV-related services.
+- **For All**: Provides additional information where to charge the car/bike, what benefits there are related to parking in Sofia and a quick link to the EV Database website.
+
+### Prerequisites and libraries
+- in requirements.txt
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/VankataLv/EVTool.git
+   cd EVTool
+
+2. python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+3. pip install -r requirements.txt
+
+4. python manage.py migrate
+
+5. python manage.py runserver
+
+6. in your browser type:
+    http://127.0.0.1:8000
