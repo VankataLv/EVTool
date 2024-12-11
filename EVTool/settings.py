@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import secrets
 # from decouple import config
 from pathlib import Path
 
@@ -84,6 +85,17 @@ WSGI_APPLICATION = 'EVTool.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': secrets['DB_NAME'],
+#         'USER': secrets['DB_USER'],
+#         'PASSWORD': secrets['DB_PASSWORD'],
+#         'HOST': secrets['DB_HOST'],
+#         'PORT': secrets['DB_PORT'],
+#     }
+# }
 
 DATABASES = {
     "default": {
